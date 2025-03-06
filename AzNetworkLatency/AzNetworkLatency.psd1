@@ -4,7 +4,7 @@
 RootModule = 'AzNetworkLatency.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '0.0.2'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -89,13 +89,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('Azure', 'Network', 'Latency', 'Region', 'Regions', 'Location', 'Locations')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/autosysops/PowerShell_AzNetworkLatency/blob/main/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/autosysops/PowerShell_AzNetworkLatency'
 
         # A URL to an icon representing this module.
         # IconUri = ''
