@@ -33,9 +33,6 @@ if (-not $WorkingDirectory)
 if (-not $WorkingDirectory) { $WorkingDirectory = Split-Path $PSScriptRoot }
 #endregion Handle Working Directory Defaults
 
-# Download the latency data
-(Invoke-WebRequest -Method GET -Uri "https://raw.githubusercontent.com/autosysops/azure_network_latency/refs/heads/main/latencydata.json").Content | Out-File "$($WorkingDirectory)\AzNetworkLatency\internal\resources\latencydata.json"
-
 # Prepare publish folder
 Write-Host "Creating and populating publishing directory"
 $publishDir = New-Item -Path $WorkingDirectory -Name publish -ItemType Directory -Force
@@ -59,7 +56,7 @@ Get-ChildItem -Path "$($publishDir.FullName)\AzNetworkLatency\internal\scripts\"
 
 # Add latency data
 $text += "# Local storage of latency data"
-$text += "`$script:latencyData = `'" + ((Get-Content "$($publishDir.FullName)\AzNetworkLatency\internal\resources\latencydata.json" -Raw) | ConvertFrom-Json | ConvertTo-Json -Compress -Depth 4) + "`' | ConvertFrom-Json"
+$text += "`$script:latencyData = `'" + ((Invoke-WebRequest -Method GET -Uri "https://raw.githubusercontent.com/autosysops/azure_network_latency/refs/heads/main/latencydata.json").Content | ConvertFrom-Json | ConvertTo-Json -Compress -Depth 4) + "`' | ConvertFrom-Json"
 
 #region Update the psm1 file & Cleanup
 [System.IO.File]::WriteAllText("$($publishDir.FullName)\AzNetworkLatency\AzNetworkLatency.psm1", ($text -join "`n`n"), [System.Text.Encoding]::UTF8)
