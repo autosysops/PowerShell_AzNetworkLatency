@@ -3,7 +3,7 @@
 # ===================================================================
 
 # Create env variables
-$Env:AzNetworkLatency_TELEMETRY_OPTIN = (-not $Evn:POWERSHELL_TELEMETRY_OPTOUT) # use the invert of default powershell telemetry setting
+$Env:AZNNETWORKLATENCY_TELEMETRY_OPTIN = (-not $Evn:POWERSHELL_TELEMETRY_OPTOUT) # use the invert of default powershell telemetry setting
 
 # Set up the telemetry
 Initialize-THTelemetry -ModuleName "AzNetworkLatency"
