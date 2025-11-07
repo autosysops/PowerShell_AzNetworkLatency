@@ -52,13 +52,13 @@
 
     if ($Online) {
         # Send telemetry
-        Send-THEvent -ModuleName "AzNetworkLatency" -EventName "Get-AzNetworkLatenc" -PropertiesHash @{Type = "Online" }
+        Send-THEvent -ModuleName "AzNetworkLatency" -EventName "Get-AzNetworkLatency" -PropertiesHash @{Type = "Online" }
 
         $ldata = Invoke-RestMethod -Method GET -Uri "https://raw.githubusercontent.com/autosysops/azure_network_latency/refs/heads/main/latencydata.json"
     }
     else {
         # Send telemetry
-        Send-THEvent -ModuleName "AzNetworkLatency" -EventName "Get-AzNetworkLatenc" -PropertiesHash @{Type = "Offline" }
+        Send-THEvent -ModuleName "AzNetworkLatency" -EventName "Get-AzNetworkLatency" -PropertiesHash @{Type = "Offline" }
 
         if(-not $IgnoreWarning) {
             Write-Warning "[WARNING] Module uses embedded latency data. This data could be outdate. Use the switch -online for the most recent data. To suppress this message use the switch -IgnoreWarning."
